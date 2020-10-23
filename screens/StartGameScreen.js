@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 20,
+    fontFamily: "open-sans-bold",
     marginVertical: 10,
     borderBottomColor: Colors.primary_text,
     borderBottomWidth: 1,
