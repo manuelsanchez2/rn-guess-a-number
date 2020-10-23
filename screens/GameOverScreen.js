@@ -1,13 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Button, Image } from "react-native";
 import Colors from "../constants/colors";
 
 import BodyText from "../components/BodyText";
+import TitleText from "../components/TitleText";
 
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <BodyText style={styles.title}>The Game is Over</BodyText>
+      <TitleText style={styles.title}>The Game is Over</TitleText>
+      <View style={styles.imageContainer}>
+        <Image source={require("../assets/success.png")} style={styles.image} />
+      </View>
       <BodyText>Number of rounds: {props.roundsNumber}</BodyText>
       <BodyText>It was clear your number was {props.userNumber}</BodyText>
       <View style={styles.buttonContainer}>
@@ -23,19 +27,31 @@ const GameOverScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
-    height: "100%",
+    height: "90%",
     justifyContent: "center",
     alignItems: "center",
   },
 
   title: {
-    fontFamily: "open-sans-bold",
     fontSize: 20,
     marginBottom: 15,
   },
 
   buttonContainer: {
     marginVertical: 20,
+  },
+  imageContainer: {
+    borderRadius: 200,
+    borderWidth: 3,
+    borderColor: Colors.contrast,
+    marginVertical: 15,
+    width: 300,
+    height: 300,
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   },
 });
 
