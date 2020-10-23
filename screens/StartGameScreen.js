@@ -15,12 +15,26 @@ import Colors from "../constants/colors";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [selectedNumber, setSelectedNumber] = useState();
 
   const numberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
   };
 
   const resetInputHandle = () => {
+    setEnteredValue("");
+    setConfirmed(false);
+  };
+
+  const confirmInputHandle = () => {
+    const chosenNumber = parseInt(enteredValue);
+    if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+      return;
+    }
+
+    setConfirmed(true);
+    setSelectedNumber(chosenNumber);
     setEnteredValue("");
   };
   return (
@@ -48,7 +62,11 @@ const StartGameScreen = (props) => {
               <Button color="red" title="Reset" onPress={resetInputHandle} />
             </View>
             <View style={styles.buttonContainer}>
-              <Button color="green" title="Confirm" onPress={() => {}} />
+              <Button
+                color="green"
+                title="Confirm"
+                onPress={confirmInputHandle}
+              />
             </View>
           </View>
         </Card>
