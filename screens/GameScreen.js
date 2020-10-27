@@ -14,6 +14,7 @@ import Card from "../components/Card";
 import MainButton from "../components/MainButton";
 import BodyText from "../components/BodyText";
 import { Ionicons } from "@expo/vector-icons";
+import { ScreenOrientation } from "expo";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -34,14 +35,16 @@ const renderListItem = (value, numOfRound) => (
 );
 
 const GameScreen = (props) => {
+  // ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+
   const initialGuess = generateRandomBetween(1, 100, props.userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess]);
   const [availableDeviceWidth, setAvailableDeviceWidth] = useState(
-    Dimensions.get("window").width < 500
+    Dimensions.get("window").width
   );
   const [availableDeviceHeight, setAvailableDeviceHeight] = useState(
-    Dimensions.get("window").height < 500
+    Dimensions.get("window").height
   );
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
@@ -93,6 +96,12 @@ const GameScreen = (props) => {
     setPastGuesses((curPastGuesses) => [nextNumber, ...curPastGuesses]);
   };
 
+  let listContainerStyle = styles.listContainer;
+
+  if (availableDeviceWidth < 350) {
+    listContainerStyle = styles.listContainerBig;
+  }
+
   if (availableDeviceHeight < 500) {
     return (
       <View style={styles.screen}>
@@ -107,7 +116,7 @@ const GameScreen = (props) => {
             <Ionicons name="md-add" size={24} />
           </MainButton>
         </View>
-        <View style={styles.list}>
+        <View style={styles.listContainer}>
           <ScrollView>
             {pastGuesses.map((guess, index) =>
               renderListItem(guess, pastGuesses.length - index)
@@ -130,7 +139,7 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} />
         </MainButton>
       </Card>
-      <View style={styles.list}>
+      <View style={styles.listContainer}>
         <ScrollView>
           {pastGuesses.map((guess, index) =>
             renderListItem(guess, pastGuesses.length - index)
@@ -153,10 +162,14 @@ const styles = StyleSheet.create({
     width: 350,
     maxWidth: "90%",
   },
-  list: {
-    width: "50%",
+  listContainer: {
+    width: "70%",
     flexGrow: 1,
     height: "60%",
+  },
+  listContainerBig: {
+    flex: 1,
+    width: "80%",
   },
   listItem: {
     borderColor: "#ccc",
