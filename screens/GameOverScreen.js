@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   imageContainer: {
-    borderRadius: 200,
+    borderRadius: (Dimensions.get("window").width * 0.7) / 2,
     borderWidth: 3,
     borderColor: Colors.contrast,
-    marginVertical: Dimensions.get("window").height / 40,
+    marginVertical: Dimensions.get("window").height / 20,
     width: Dimensions.get("window").width * 0.7,
-    height: (Dimensions.get("window").height * 0.7) / 2,
+    height: Dimensions.get("window").height * 0.7,
     overflow: "hidden",
   },
   image: {
