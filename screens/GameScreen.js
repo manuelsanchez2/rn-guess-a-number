@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     maxWidth: "90%",
   },
   list: {
-    width: "80%",
+    width: "50%",
     flexGrow: 1,
     height: "60%",
   },
