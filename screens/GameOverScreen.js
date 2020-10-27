@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Image,
+  Dimensions,
+} from "react-native";
 import Colors from "../constants/colors";
 
 import BodyText from "../components/BodyText";
@@ -56,9 +63,9 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     borderWidth: 3,
     borderColor: Colors.contrast,
-    marginVertical: 15,
-    width: 300,
-    height: 300,
+    marginVertical: Dimensions.get("window").height / 40,
+    width: Dimensions.get("window").width * 0.7,
+    height: (Dimensions.get("window").height * 0.7) / 2,
     overflow: "hidden",
   },
   image: {
